@@ -191,16 +191,16 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <router-link to="/dashboard" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt text-purple"></i>
                 <p>
                     Dashboard
                 </p>
-                </a>
+                </router-link>
             </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-cog "></i>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cog text-green"></i>
               <p>
                 Management
                 <i class="right fas fa-angle-left"></i>
@@ -208,34 +208,32 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
+              <router-link to="/users" class="nav-link">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Users</p>
+              </router-link>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+            <router-link to="/profile" class="nav-link">
+                <i class="nav-icon fas fa-user text-orange"></i>
                 <p>
                     Profile
                 </p>
-                </a>
+                </router-link>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-power-off"></i>
+                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                <i class="nav-icon fas fa-power-off text-red"></i>
                 <p>
-                    Logout
+                  {{ __('Logout') }}
                 </p>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
         </ul>
       </nav>
@@ -250,6 +248,8 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          <!-- component matched by the route will render here -->
+          <router-view></router-view>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
